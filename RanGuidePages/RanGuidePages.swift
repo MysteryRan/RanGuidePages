@@ -95,7 +95,7 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
     }
     
     //进入按钮点击事件
-    func BtnClick() {
+    @objc func BtnClick() {
         UIView.animate(withDuration: 2.0, animations: {
             self.alpha = 0.0
         }, completion: { (finish) in
@@ -104,7 +104,7 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
     }
     
     //跳过按钮点击事件
-    func skipGuard() {
+    @objc func skipGuard() {
         UIView.animate(withDuration: 2.0, animations: {
             self.alpha = 0.0
         }, completion: { (finish) in
