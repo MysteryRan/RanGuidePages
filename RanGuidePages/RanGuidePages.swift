@@ -55,7 +55,7 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
     
     @objc func timerStart() {
         repeatTime += 1
-        scrollView.contentOffset = CGPoint(x: repeatTime * UIScreen.main.bounds.width, y: 0)
+        scrollView .setContentOffset(CGPoint(x: repeatTime * UIScreen.main.bounds.width, y: 0), animated: true)
         pageController.currentPage = Int((scrollView.contentOffset.x + UIScreen.main.bounds.width / 2.0) / UIScreen.main.bounds.width)
         if Int(repeatTime) >= imageDatas.count {
             self.removeFromSuperview()
@@ -143,6 +143,7 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
     //MARK UIScrollViewDelegate
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageController.currentPage = Int((scrollView.contentOffset.x + UIScreen.main.bounds.width / 2.0) / UIScreen.main.bounds.width)
+        repeatTime = CGFloat(pageController.currentPage)
         if pageController.currentPage == imageDatas.count - 1 {
             skipBtn.isHidden = true
         } else {

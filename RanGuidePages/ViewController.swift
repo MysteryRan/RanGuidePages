@@ -14,15 +14,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //没有登录过
-        guard (UserDefaults.standard.value(forKey: "launched") != nil) else {
+//        guard (UserDefaults.standard.value(forKey: "launched") != nil) else {
             let images = ["1.jpg","2.jpg","3.jpg"]
             let ranGuide = RanGuidePages(frame: UIScreen.main.bounds, images: images)
             ranGuide.autoScrollTime = 5
             self.view.addSubview(ranGuide)
             //登录过
             UserDefaults.standard.set("launch", forKey: "launched")
-            return
-        }
+//            return
+//        }
     }
 
     override func didReceiveMemoryWarning() {
