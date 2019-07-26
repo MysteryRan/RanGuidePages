@@ -24,6 +24,14 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
     //跳过按钮
     fileprivate let skipBtn = UIButton()
     
+    //自动滚动时间
+    var autoScrollTime = 2
+    
+    //重复次数
+    var repeatTime: CGFloat = -1
+    
+    //自动滚动计时器
+    fileprivate var autoTimer: Timer?
     
     // 重写初始化方法
     init(frame: CGRect, images: [String]) {
@@ -34,6 +42,25 @@ class RanGuidePages: UIView, UIScrollViewDelegate {
         
         //MARK: 初始化UI
         initView()
+        
+        //MARK: 初始化timer
+        initTimer()
+    }
+    
+    func initTimer() {
+        autoTimer = Timer.scheduledTimer(timeInterval: TimeInterval(autoScrollTime), target: self, selector: #selector(timerStart), userInfo: nil, repeats: true);
+        autoTimer!.fire()
+        RunLoop.current.add(autoTimer!, forMode: .common)
+    }
+    
+    @objc func timerStart() {
+        repeatTime += 1
+        scrollView.contentOffset = CGPoint(x: repeatTime * UIScreen.main.bounds.width, y: 0)
+        pageController.currentPage = Int((scrollView.contentOffset.x + UIScreen.main.bounds.width / 2.0) / UIScreen.main.bounds.width)
+        if Int(repeatTime) >= imageDatas.count {
+            self.removeFromSuperview()
+            autoTimer?.invalidate()
+        }
     }
     
     
