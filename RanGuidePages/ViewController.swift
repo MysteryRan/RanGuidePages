@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         guard (UserDefaults.standard.value(forKey: "launched") != nil) else {
             let images = ["1.jpg","2.jpg","3.jpg"]
             let ranGuide = RanGuidePages(frame: UIScreen.main.bounds, images: images)
+            ranGuide.autoScrollTime = 5
             self.view.addSubview(ranGuide)
             //登录过
             UserDefaults.standard.set("launch", forKey: "launched")

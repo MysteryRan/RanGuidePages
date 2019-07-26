@@ -18,4 +18,6 @@
             return
         }
     }
+### 增加自动滚动功能
+        autoScrollTime = 2 
     
